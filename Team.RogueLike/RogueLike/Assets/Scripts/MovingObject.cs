@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class MovingObject : MonoBehaviour
 {
+    public int attack = 10;
     public float moveTime = 0.1f;
     public LayerMask blockingLayer;
 
@@ -68,7 +69,8 @@ public abstract class MovingObject : MonoBehaviour
     }
     //移動を試みるメソッド
     //virtual : 継承されるメソッドに付ける修飾子
-    protected virtual void AttemptMove(int xDir, int yDir)
+    protected virtual void AttemptMove<T>(int xDir, int yDir)
+        where T : Component
     {
         RaycastHit2D hit;
         //Moveメソッド実行 戻り値がtrueなら移動成功、falseなら移動失敗
@@ -78,15 +80,17 @@ public abstract class MovingObject : MonoBehaviour
         {
             return;
         }
+        //障害物があった場合障害物を型引数の型で取得
+        T hitcomponent = hit.transform.GetComponent<T>();
         //障害物がある場合OnCantMoveを呼び出す
-        if (!canMove)
+        if (!canMove && hitcomponent != null)
         {
-            OnCantMove();
+            OnCantMove(hitcomponent);
         }
     }
 
     //abstract: メソッドの中身はこちらでは書かず、サブクラスにて書く
     //<T>：AttemptMoveと同じくジェネリック機能
     //障害物があり移動ができなかった場合に呼び出される
-    protected abstract void OnCantMove();
+    protected abstract void OnCantMove<T>(T component) where T : Component;
 }
