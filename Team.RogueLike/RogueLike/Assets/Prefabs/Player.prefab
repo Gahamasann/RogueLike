@@ -145,5 +145,7 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  pointsPerHeal: 20
+  coin: 1000
   restartlevelDelay: 1
+  moneyText: {fileID: 0}
+  hpText: {fileID: 0}

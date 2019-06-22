@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //MovingObject継承
 public class Player : MovingObject
 {
-    public int pointsPerHeal = 20; //HPの回復量
+    public int coin = 20; //お金
     public float restartlevelDelay = 1f; //次レベルへ行く時の時間差
+    public Text moneyText;
+    public Text hpText;
 
+    private int money;
     private int hp; //プレイヤーの体力
 
     //MovingObjectのStartメソッドを継承　baseで呼び出し
@@ -17,14 +21,19 @@ public class Player : MovingObject
         //シングルトンであるGameManagerのplayerHpを使うことに
         //よって、レベルを跨いでも値を保持しておける
         hp = GameManager.instance.playerHp;
+        hpText.text = "HP:" + hp;
+        money = GameManager.instance.moneydebt;
+        moneyText.text = "Money:" + money;
         //MovingObjectのStartメソッド呼び出し
         base.Start();
     }
+
     //Playerスクリプトが無効になる前に、体力をGameManagerへ保存
     //UnityのAPIメソッド(Unityに標準で用意された機能)
     private void OnDisable()
     {
         GameManager.instance.playerHp = hp;
+        GameManager.instance.moneydebt = money;
     }
 
     void Update()
@@ -83,8 +92,9 @@ public class Player : MovingObject
         }
         else if (other.tag == "Item")
         {
-            //体力を回復しotherオブジェクトを削除
-            hp += pointsPerHeal;
+            //借金を減らしotherオブジェクトを削除
+            money += coin;
+            moneyText.text = "Money:" + money;
             other.gameObject.SetActive(false);
         }
     }
@@ -99,6 +109,7 @@ public class Player : MovingObject
     public void LoseHp(int loss)
     {
         hp -= loss;
+        hpText.text = "HP:" + hp;
         CheckIfGameOver();
     }
 

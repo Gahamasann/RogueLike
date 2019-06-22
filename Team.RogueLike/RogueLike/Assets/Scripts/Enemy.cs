@@ -58,6 +58,7 @@ public class Enemy : MovingObject
 
     protected override void OnCantMove()
     {
-        Debug.Log("攻撃じゃい");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<Player>().LoseHp(playerDamage);
     }
 }
