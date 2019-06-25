@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     //階層表示画面で2秒待つ
     public float floorStartDelay = 2f;
     //Enemyの動作時間
-    public float turnDelay = 0.1f;
+    public float turnDelay = 0.01f;
     //static変数：シーン間で変数を共有
     //ゲーム内でユニークな関数
     //オブジェクトに属さずクラスに属す
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     //フロアイメージ
     private GameObject floorImage;
     //この数に応じて出現する敵の数を調整する予定。(階層)
+    private int floor = 8;
     //セットアップ中かどうか
     private bool doingSetup;
 
@@ -124,8 +125,15 @@ public class GameManager : MonoBehaviour
         //Enemyの数だけEnemyスクリプトのMoveEnemyを実行
         for(int i = 0;i < enemies.Count; i++)
         {
-            enemies[i].MoveEnemy();
-            //yield return new WaitForSeconds(enemies[i].moveTime);
+            if(enemies[i].isActiveAndEnabled)
+            {
+                enemies[i].MoveEnemy();
+                yield return new WaitForSeconds(enemies[i].moveTime);
+            }
+            else
+            {
+                enemies.Remove(enemies[i]);
+            }
         }
 
         playersTurn = true;
