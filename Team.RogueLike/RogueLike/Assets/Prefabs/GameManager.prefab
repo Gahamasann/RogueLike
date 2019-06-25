@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4019128745264977478}
   - component: {fileID: 4019128745264977465}
-  - component: {fileID: 4019128745264977464}
+  - component: {fileID: 3070994915346596340}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b5e254642e44a49b3217ed4140a325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnDelay: 0.1
-  boardScript: {fileID: 0}
+  floorStartDelay: 2
+  turnDelay: 0.05
   playerHp: 100
+  moneydebt: -2000000
   playersTurn: 1
-  level: 3
---- !u!114 &4019128745264977464
+--- !u!114 &3070994915346596340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,11 +58,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4019128745264977467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3248de2f2d0a0d4098f7fce58105016, type: 3}
+  m_Script: {fileID: 11500000, guid: ca8896de9bf46c140967effa88021299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 8
-  height: 8
+  WIDTH: 50
+  HEIGHT: 50
+  OUTER_MERGIN: 1
+  POS_MERGIN: 2
+  MIN_ROOM: 10
+  MAX_ROOM: 30
   itemCount:
     minimum: 1
     maximum: 5
