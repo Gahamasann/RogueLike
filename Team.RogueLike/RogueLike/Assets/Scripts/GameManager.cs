@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     //オブジェクトに属さずクラスに属す
     public static GameManager instance = null;
 
-    private BoardManager boardScript;
+    private DgGenerator dungionScript;
 
     //シングルトンであるGameManagerに体力を作成することで
     //体力情報を維持する
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     //フロアイメージ
     private GameObject floorImage;
     //この数に応じて出現する敵の数を調整する予定。(階層)
-    private int floor = 8;
+    private int floor = 1;
     //セットアップ中かどうか
     private bool doingSetup;
 
@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         //Enemyを格納する配列生成
         enemies = new List<Enemy>();
-        //BoardManager取得
-        boardScript = GetComponent<BoardManager>();
+        //DgGenerator取得
+        dungionScript = GetComponent<DgGenerator>();
         InitGame();
     }
 
@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
         Invoke("HideFloorImage", floorStartDelay);
         //EnemyListを初期化
         enemies.Clear();
-        //BoardManagerのSetupSceneメソッドを実行
-        boardScript.SetupScene(floor);
+        //DgManegerのSetupSceneメソッドを実行
+        dungionScript.SetupScene(floor);
     }
 
     private void HideFloorImage()

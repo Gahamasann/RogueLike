@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 176089168495563470}
   - component: {fileID: 7940517046038192746}
   - component: {fileID: 877181271123046486}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: OuterWall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
