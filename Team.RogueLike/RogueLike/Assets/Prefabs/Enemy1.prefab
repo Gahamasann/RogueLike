@@ -120,14 +120,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &4591934218313578544
 MonoBehaviour:
@@ -141,9 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d947a49d6502945af13f7dd0acbc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 10
   moveTime: 0.1
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  playerDamage: 0
   skipMove: 2
+  enemyHp: 30

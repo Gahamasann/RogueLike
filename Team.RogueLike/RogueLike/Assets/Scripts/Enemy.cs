@@ -5,11 +5,10 @@ using UnityEngine;
 //MovingObject継承
 public class Enemy : MovingObject
 {
-    public int playerDamage;
-
     private Transform target;//プレイヤーの位置情報
     public int skipMove = 1;//敵が動くかどうかの判定
     private int movecount = 1;//敵が動くかどうかをカウントする
+    public int enemyHp = 30;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -22,12 +21,12 @@ public class Enemy : MovingObject
         base.Start();
     }
 
-    protected override void AttemptMove(int xDir, int yDir)
+    protected override void AttemptMove<T>(int xDir, int yDir)
     {
         //比較して行動ターン数になっていれば動く
         if(movecount >= skipMove)
         {
-            base.AttemptMove(xDir, yDir);
+            base.AttemptMove<T>(xDir, yDir);
             movecount = 1;
             return;
         }
@@ -53,11 +52,26 @@ public class Enemy : MovingObject
             //プレイヤーが右にいれば+1、左にいれば-1する
             xDir = target.position.x > transform.position.x ? 1 : -1;
         }
-        AttemptMove(xDir, yDir);
+        AttemptMove<Player>(xDir, yDir);
     }
 
-    protected override void OnCantMove()
+    protected override void OnCantMove<T>(T component)
     {
-        Debug.Log("攻撃じゃい");
+        if(gameObject.activeSelf)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<Player>().LoseHp(attack);
+        }
+    }
+
+    //エネミーがダメージを受けたときに呼び出されるメソッド
+    public void DamageEnemy(int loss)
+    {
+        enemyHp -= loss;
+
+        if(enemyHp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

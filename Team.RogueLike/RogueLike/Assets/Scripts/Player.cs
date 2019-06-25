@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //MovingObject継承
 public class Player : MovingObject
 {
-    public int pointsPerHeal = 20; //HPの回復量
+    //プレイヤー内で統一の貨幣単位を決めてしまっているので後で修正
+    public int coin = 20; //お金
     public float restartlevelDelay = 1f; //次レベルへ行く時の時間差
+    public Text moneyText;
+    public Text hpText;
 
+    private int money;
     private int hp; //プレイヤーの体力
 
     //MovingObjectのStartメソッドを継承　baseで呼び出し
@@ -17,14 +22,19 @@ public class Player : MovingObject
         //シングルトンであるGameManagerのplayerHpを使うことに
         //よって、レベルを跨いでも値を保持しておける
         hp = GameManager.instance.playerHp;
+        hpText.text = "HP:" + hp;
+        money = GameManager.instance.moneydebt;
+        moneyText.text = "Money:" + money;
         //MovingObjectのStartメソッド呼び出し
         base.Start();
     }
+
     //Playerスクリプトが無効になる前に、体力をGameManagerへ保存
     //UnityのAPIメソッド(Unityに標準で用意された機能)
     private void OnDisable()
     {
         GameManager.instance.playerHp = hp;
+        GameManager.instance.moneydebt = money;
     }
 
     void Update()
@@ -47,30 +57,27 @@ public class Player : MovingObject
         if (horizontal != 0 || vertical != 0)
         {
             //Playerの場合はWall以外判定する必要はない
-            AttemptMove(horizontal, vertical);
+            AttemptMove<Enemy>(horizontal, vertical);
         }
     }
 
     //移動時の処理
-    protected override void AttemptMove(int xDir, int yDir)
+    protected override void AttemptMove<T>(int xDir, int yDir)
     {
         //MovingObjectのAttemptMove呼び出し
-        base.AttemptMove(xDir, yDir);
+        base.AttemptMove<T>(xDir, yDir);
 
         CheckIfGameOver();
+
         //プレイヤーの順番終了
         GameManager.instance.playersTurn = false;
     }
 
     //MovingObjectの抽象メソッドのため必ず必要
-    protected override void OnCantMove()
+    protected override void OnCantMove<T>(T component)
     {
-        //移動先にcomponentがあった場合の処理（例文）
-
-        ////Wall型を定義 Wallスクリプトを表す
-        //Wall hitWall = component as Wall;
-        ////WallスクリプトのDamageWallメソッド呼び出し
-        //hitWall.DamageWall(wallDamage);
+        Enemy hitenemy = component as Enemy;
+        hitenemy.DamageEnemy(attack);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -83,8 +90,9 @@ public class Player : MovingObject
         }
         else if (other.tag == "Item")
         {
-            //体力を回復しotherオブジェクトを削除
-            hp += pointsPerHeal;
+            //借金を減らしotherオブジェクトを削除
+            money += coin;
+            moneyText.text = "Money:" + money;
             other.gameObject.SetActive(false);
         }
     }
@@ -99,6 +107,7 @@ public class Player : MovingObject
     public void LoseHp(int loss)
     {
         hp -= loss;
+        hpText.text = "HP:" + hp;
         CheckIfGameOver();
     }
 

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;//UI用
 
 public class GameManager : MonoBehaviour
 {
+    //階層表示画面で2秒待つ
+    public float floorStartDelay = 2f;
     //Enemyの動作時間
     public float turnDelay = 0.1f;
     //static変数：シーン間で変数を共有
@@ -11,18 +14,24 @@ public class GameManager : MonoBehaviour
     //オブジェクトに属さずクラスに属す
     public static GameManager instance = null;
 
-    public BoardManager boardScript;
+    private BoardManager boardScript;
 
     //シングルトンであるGameManagerに体力を作成することで
     //体力情報を維持する
     public int playerHp = 100;//プレイヤーの体力
+    public int moneydebt = -2000000;//借金
     //HideInInspector:public変数だがInspectorで編集できない
     //プレイヤーの順番か判定用
     [HideInInspector] public bool playersTurn = true;
 
-    //テスト用でレベル3
-    //この数に応じて出現する敵の数を調整する予定。(未実装)
-    public int level = 3;
+    //フロアテキスト
+    private Text floorText;
+    //フロアイメージ
+    private GameObject floorImage;
+    //この数に応じて出現する敵の数を調整する予定。(階層)
+    public int floor = 1;
+    //セットアップ中かどうか
+    private bool doingSetup;
 
     //Enemyクラスの配列
     private List<Enemy> enemies;
@@ -51,23 +60,48 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        floor++;
+        InitGame();
+    }
+
     void InitGame()
     {
-        enemies.Clear();//EnemyListを初期化
+        //trueの間、プレイヤーは身動きを取れない
+        doingSetup = true;
+        //それぞれのオブジェクト取得
+        floorImage = GameObject.Find("FloorImage");
+        floorText = GameObject.Find("FloorText").GetComponent<Text>();
+        floorText.text = floor + "F";
+        floorImage.SetActive(true);
+        Invoke("HideFloorImage", floorStartDelay);
+        //EnemyListを初期化
+        enemies.Clear();
         //BoardManagerのSetupSceneメソッドを実行
-        boardScript.SetupScene(level);
+        boardScript.SetupScene(floor);
+    }
+
+    private void HideFloorImage()
+    {
+        //非アクティブ化及びプレイヤーを動けるように
+        floorImage.SetActive(false);
+        doingSetup = false;
     }
     
     public void GameOver()
     {
+        //ゲームオーバーメッセージを表示
+        floorText.text = "GameOver";
+        floorImage.SetActive(true);
         //GameManagerを無効にする
         enabled = false;
     }
 
     void Update()
     {
-        //PlayerのターンかEnemyが動いた後ならUpdateしない
-        if(playersTurn || enemiesMoving)
+        //PlayerのターンかEnemyが動いた後かdoingSetup = trueならUpdateしない
+        if(playersTurn || enemiesMoving || doingSetup)
         {
             return;
         }
