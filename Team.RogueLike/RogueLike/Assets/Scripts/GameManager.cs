@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     //フロアイメージ
     private GameObject floorImage;
     //この数に応じて出現する敵の数を調整する予定。(階層)
-    public int floor = 8;
     //セットアップ中かどうか
     private bool doingSetup;
 
