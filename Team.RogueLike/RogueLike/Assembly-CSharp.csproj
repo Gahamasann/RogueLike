@@ -60,7 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Scripts\DungeonMaker\DgDivision.cs" />
     <Compile Include="Assets\Scripts\DungeonMaker\DgGenerator.cs" />
     <Compile Include="Assets\Scripts\DungeonMaker\Layer2D.cs" />

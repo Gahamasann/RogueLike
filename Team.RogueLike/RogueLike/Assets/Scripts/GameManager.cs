@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     //階層表示画面で2秒待つ
     public float floorStartDelay = 2f;
     //Enemyの動作時間
-    public float turnDelay = 0.01f;
+    public float turnDelay = 0.1f;
     //static変数：シーン間で変数を共有
     //ゲーム内でユニークな関数
     //オブジェクトに属さずクラスに属す
