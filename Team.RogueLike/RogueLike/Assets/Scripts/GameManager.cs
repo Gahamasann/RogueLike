@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     //フロアイメージ
     private GameObject floorImage;
     //この数に応じて出現する敵の数を調整する予定。(階層)
-    public int floor = 1;
+    public int floor = 8;
     //セットアップ中かどうか
     private bool doingSetup;
 
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0;i < enemies.Count; i++)
         {
             enemies[i].MoveEnemy();
-            yield return new WaitForSeconds(enemies[i].moveTime);
+            //yield return new WaitForSeconds(enemies[i].moveTime);
         }
 
         playersTurn = true;
