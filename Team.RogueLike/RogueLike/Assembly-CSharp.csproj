@@ -65,9 +65,11 @@
     <Compile Include="Assets\Scripts\DungeonMaker\Layer2D.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ItemIDManager.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MovingObject.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <None Include="Assets\Resources\ItemID.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/K018A1506/Desktop/ローグライク/Team.RogueLike/RogueLike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
