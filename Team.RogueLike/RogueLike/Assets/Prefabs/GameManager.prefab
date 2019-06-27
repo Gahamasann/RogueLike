@@ -70,12 +70,15 @@ MonoBehaviour:
   itemCount:
     minimum: 1
     maximum: 5
+  enemyCount:
+    minimum: 1
+    maximum: 5
   exit: {fileID: 1783639399451878687, guid: 7aa0975ecd9d13345b1f08dc29a03261, type: 3}
   floorTiles:
-  - {fileID: 1783639399451878687, guid: cedda5b05d124fb45aae075e7bc7f370, type: 3}
+  - {fileID: 1783639399451878687, guid: 5daa69ac074473f42aed2f5085af3511, type: 3}
   outerWallTiles:
-  - {fileID: 1783639399451878687, guid: 95d33114634cc984d90adba382c36549, type: 3}
+  - {fileID: 1783639399451878687, guid: f7766eaab50d290489fb25c06f4ea255, type: 3}
   itemTiles:
-  - {fileID: 1783639399451878687, guid: e5f80534b4bc1ae488d46a8cb8c36137, type: 3}
+  - {fileID: 1783639399451878687, guid: 9da1d94c3b988204ca09fbf588588974, type: 3}
   enemyTiles:
   - {fileID: 1399129927765147236, guid: 582b886d90fcd0f4098cba6343a7f2b5, type: 3}
