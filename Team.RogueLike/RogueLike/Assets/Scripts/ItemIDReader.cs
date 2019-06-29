@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemIDManager: MonoBehaviour
+public class ItemIDReader: MonoBehaviour
 {
 
     private string[] sideLine;//生データの横一行を入れるやつ
