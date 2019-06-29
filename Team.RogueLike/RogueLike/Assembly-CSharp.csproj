@@ -53,16 +53,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\DungeonMaker\DgDivision.cs" />
-     <Compile Include="Assets\Scripts\DungeonMaker\DgGenerator.cs" />
-     <Compile Include="Assets\Scripts\DungeonMaker\Layer2D.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\ItemIDManager.cs" />
-     <Compile Include="Assets\Scripts\Loader.cs" />
-     <Compile Include="Assets\Scripts\MiniMap.cs" />
-     <Compile Include="Assets\Scripts\MovingObject.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\DgDivision.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\DgGenerator.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\Layer2D.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\ItemIDManager.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\Loader.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\MiniMap.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\MovingObject.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\Player.cs" />
+     <Compile Include="Assets\Scripts\Start\Button1.cs" />
+     <Compile Include="Assets\Scripts\Start\Cancel.cs" />
+     <Compile Include="Assets\Scripts\Start\FadeSceneManager.cs" />
+     <Compile Include="Assets\Scripts\Start\Gate.cs" />
+     <Compile Include="Assets\Scripts\Start\KitiPlayer.cs" />
+     <Compile Include="Assets\Scripts\Start\SelectOnSelf.cs" />
      <None Include="Assets\Resources\ItemID.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/K017A1960/Desktop/GitExit/Team.RogueLike/RogueLike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
