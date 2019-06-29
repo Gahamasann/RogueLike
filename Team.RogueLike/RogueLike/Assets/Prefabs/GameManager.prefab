@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WIDTH: 50
   HEIGHT: 50
-  OUTER_MERGIN: 1
+  OUTER_MERGIN: 3
   POS_MERGIN: 2
   MIN_ROOM: 10
   MAX_ROOM: 30

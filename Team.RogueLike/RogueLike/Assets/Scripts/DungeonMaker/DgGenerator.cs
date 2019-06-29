@@ -38,11 +38,11 @@ public class DgGenerator : MonoBehaviour
     /// <summary>
     /// 通路
     /// </summary>
-    const int CHIP_NONE = 0;
+    const int CHIP_NONE = 1;
     /// <summary>
     /// 壁
     /// </summary>
-    const int CHIP_WALL = 1;
+    const int CHIP_WALL = 0;
 
     /// <summary>
     /// 2次元配列情報
@@ -77,6 +77,8 @@ public class DgGenerator : MonoBehaviour
     public Count enemyCount = new Count(1, 5);
     //Exitオブジェクト
     public GameObject exit;
+    //Playerオブジェクト
+    GameObject player;
     //床、外壁、アイテムオブジェクト(Tileとして受け取る)
     public GameObject[] floorTiles;
     public GameObject[] outerWallTiles;
@@ -445,6 +447,15 @@ public class DgGenerator : MonoBehaviour
     //**********外部から追加した分*************
     //*****************************************
 
+    //任意の位置から八方向のレイヤーに埋め込まれている数の合計
+    int LayerSum(int x,int y)
+    {
+        int result = _layer.Get(x + 1, y) + _layer.Get(x + 1, y + 1) + _layer.Get(x + 1, y - 1)
+                    + _layer.Get(x - 1, y) + _layer.Get(x - 1, y + 1) + _layer.Get(x - 1, y - 1)
+                    + _layer.Get(x, y + 1) + _layer.Get(x, y - 1);
+        return result;
+    }
+
     //外壁、床を配置
     void BoardSetup()
     {
@@ -460,18 +471,29 @@ public class DgGenerator : MonoBehaviour
                 {
                     //床をランダムで生成
                     toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-
+                    GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+                    instance.transform.SetParent(boardHolder);
                 }
-                else if(_layer.Get(x, y) == CHIP_WALL)
+                else if(LayerSum(x,y) > 0)//周囲に１マスでも床があれば
                 {
-                    //外壁をランダムで生成
-                    toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+                    if (_layer.Get(x, y) == CHIP_WALL)
+                    {
+                        //外壁をランダムで生成
+                        toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+                    }
+                    GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+                    instance.transform.SetParent(boardHolder);
+                }
+                else
+                {
+                    //床をランダムで生成
+                    //toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
                 }
 
                 //床or外壁を生成し、instance変数に格納
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+                //GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
                 //生成したinstanceをBoardオブジェクトの子オブジェクトとする
-                instance.transform.SetParent(boardHolder);
+                //instance.transform.SetParent(boardHolder);
             }
         }
     }
@@ -487,7 +509,9 @@ public class DgGenerator : MonoBehaviour
         {
             for (int y = 1; y < HEIGHT - 1; y++)
             {
-                if (_layer.Get(x, y) == CHIP_NONE)
+                if (_layer.Get(x, y) == CHIP_NONE&&LayerSum(x,y)>2
+                    &&_layer.Get(x + 1,y)+_layer.Get(x - 1,y)>0
+                    &&_layer.Get(x,y + 1)+_layer.Get(x,y - 1)>0)
                 {
                     gridPositions.Add(new Vector3(x, y, 0f));
                 }
@@ -529,6 +553,13 @@ public class DgGenerator : MonoBehaviour
             Instantiate(tileArray, randomPosition, Quaternion.identity);
     }
 
+    void PlayerInit(GameObject gameObject)
+    {
+        Vector3 randomPosition = RandomPosition();
+        player = GameObject.Find("Player");//生成にしたほうが処理速いかも
+        player.transform.position = randomPosition;
+    }
+
     //オブジェクトを配置していくメソッド
     //唯一のpublicメソッド　床生成時に、GameManagerから呼ばれる
     public void SetupScene(int level)
@@ -545,5 +576,7 @@ public class DgGenerator : MonoBehaviour
         LayoutObjectAtRandom(enemyTiles, enemyCount.minimum, enemyCount.maximum);
         //Exitを右上の位置に配置する。
         LayoutObjectAtRandom(exit);
+        //Playerをマップに配置
+        PlayerInit(player);
     }
 }
