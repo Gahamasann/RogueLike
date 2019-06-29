@@ -79,6 +79,10 @@ MonoBehaviour:
   outerWallTiles:
   - {fileID: 1783639399451878687, guid: f7766eaab50d290489fb25c06f4ea255, type: 3}
   itemTiles:
-  - {fileID: 1783639399451878687, guid: 9da1d94c3b988204ca09fbf588588974, type: 3}
+  - {fileID: 3444192717295467372, guid: bf2d9cce3cc9b8444b867f806311bacc, type: 3}
+  - {fileID: 305608235381523962, guid: d474cb724bdfbee4b927bf35461f03da, type: 3}
+  - {fileID: 5197940447029192221, guid: 7ed9f2625432458458e621d9f720f3c3, type: 3}
+  - {fileID: 1278396749939076349, guid: 9fa775744067d304091835b04df68983, type: 3}
+  - {fileID: 2388217540269480305, guid: 589ed914b9c233143b84ab3f9c688161, type: 3}
   enemyTiles:
   - {fileID: 1399129927765147236, guid: 582b886d90fcd0f4098cba6343a7f2b5, type: 3}

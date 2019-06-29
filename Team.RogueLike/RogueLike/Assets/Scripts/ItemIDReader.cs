@@ -11,10 +11,11 @@ public class ItemIDReader: MonoBehaviour
     private int rowLength;//行数
     private int colnumLength;//列数
 
+
     [SerializeField]
     private int iD;
     [SerializeField]
-    private string type;
+    private string Category;
     [SerializeField]
     private int rare;
     [SerializeField]                     
@@ -69,7 +70,7 @@ public class ItemIDReader: MonoBehaviour
         {
             if(textWords[i, 1] != "" &&  int.Parse(textWords[i, 1]) == iD)//testWords[i, 1]が空じゃないかつ、IDが一致したら
             {
-                if (textWords[i, 0] != "")  type               = textWords[i, 0]; //空じゃなければ
+                if (textWords[i, 0] != "")  Category           = textWords[i, 0]; //空じゃなければ
                 if (textWords[i, 2] != "")  gameObject.name    = textWords[i, 2]; 
                 if (textWords[i, 3] != "")  rare               = int.Parse(textWords[i, 3]); 
                 if (textWords[i, 4] != "")  attack             = int.Parse(textWords[i, 4]); 
@@ -82,5 +83,6 @@ public class ItemIDReader: MonoBehaviour
             }
         }
     }
+
 
 }

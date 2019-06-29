@@ -521,6 +521,16 @@ public class DgGenerator : MonoBehaviour
         }
     }
 
+    void LayoutObject(GameObject[] tileArray)
+    {
+        foreach(var i in tileArray)
+        {
+            //gridPositionから位置情報を1つ取得
+            Vector3 randomPosition = RandomPosition();
+            Instantiate(i, randomPosition, Quaternion.identity);
+        }
+    }
+
     void LayoutObjectAtRandom(GameObject tileArray)
     {
             //gridPositionから位置情報を1つ取得
@@ -540,7 +550,9 @@ public class DgGenerator : MonoBehaviour
         //アイテム等を配置できる位置を決定し、
         InitialiseList();
         //アイテムをランダムで配置し、
-        LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
+        // LayoutObjectAtRandom(itemTiles, itemCount.minimum, itemCount.maximum);
+        LayoutObject(itemTiles);
+        
         //エネミーをランダムで配置し、
         LayoutObjectAtRandom(enemyTiles, enemyCount.minimum, enemyCount.maximum);
         //Exitを右上の位置に配置する。
