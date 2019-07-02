@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorStartDelay: 2
-  turnDelay: 0.05
+  turnDelay: 1
   playerHp: 100
   moneydebt: -2000000
   playersTurn: 1
@@ -68,8 +68,8 @@ MonoBehaviour:
   MIN_ROOM: 10
   MAX_ROOM: 30
   itemCount:
-    minimum: 1
-    maximum: 5
+    minimum: 5
+    maximum: 15
   enemyCount:
     minimum: 1
     maximum: 5

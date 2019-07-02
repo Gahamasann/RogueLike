@@ -16,6 +16,8 @@ public class Player : MovingObject
     private int money;
     private int hp; //プレイヤーの体力
 
+    public GameObject menu;
+
     //MovingObjectのStartメソッドを継承　baseで呼び出し
     protected override void Start()
     {
@@ -43,6 +45,9 @@ public class Player : MovingObject
         if (!GameManager.instance.playersTurn)
             return;
 
+        if (menu.activeSelf)
+            return;
+
         int horizontal = 0; //-1: 左移動, 1: 右移動
         int vertical = 0; //-1: 下移動, 1: 上移動
 
@@ -56,7 +61,7 @@ public class Player : MovingObject
         //上下左右どれかに移動する時
         if (horizontal != 0 || vertical != 0)
         {
-            //Playerの場合はWall以外判定する必要はない
+            //Playerの場合はEnemy以外判定する必要はない
             AttemptMove<Enemy>(horizontal, vertical);
         }
     }
