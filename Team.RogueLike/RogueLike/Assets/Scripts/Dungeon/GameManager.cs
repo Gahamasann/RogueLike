@@ -136,6 +136,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(0.1f);
+
         playersTurn = true;
         enemiesMoving = false;
     }
