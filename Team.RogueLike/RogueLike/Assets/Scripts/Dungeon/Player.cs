@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 //MovingObject継承
 public class Player : MovingObject
-{
+{ 
+
     //プレイヤー内で統一の貨幣単位を決めてしまっているので後で修正
     public int coin = 20; //お金
     public float restartlevelDelay = 1f; //次レベルへ行く時の時間差
@@ -19,6 +20,8 @@ public class Player : MovingObject
     //MovingObjectのStartメソッドを継承　baseで呼び出し
     protected override void Start()
     {
+
+
         //シングルトンであるGameManagerのplayerHpを使うことに
         //よって、レベルを跨いでも値を保持しておける
         hp = GameManager.instance.playerHp;
