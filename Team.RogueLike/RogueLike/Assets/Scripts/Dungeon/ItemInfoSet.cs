@@ -10,7 +10,6 @@ public class ItemInfoSet : MonoBehaviour
     private int rowLength;//行数
     private int colnumLength;//列数
 
-    SpriteRenderer image;
 
     [SerializeField]
     Category category;
@@ -31,6 +30,8 @@ public class ItemInfoSet : MonoBehaviour
     public int floor_RARE3;
     public int floor_RARE4;
 
+    private ItemBag itemBag;
+    public GameObject bag;
 
     public enum Category
     {
@@ -45,8 +46,8 @@ public class ItemInfoSet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
+        bag = GameObject.FindGameObjectWithTag("ItemBag");//ItemBagオブジェクトの検索
+        itemBag = bag.GetComponent<ItemBag>();//ItemBagオブジェクトの持ってるItemBagスクリプトを取得
 
         TextAsset textAsset = new TextAsset();//テキストファイルのデータを取得
 
@@ -106,7 +107,6 @@ public class ItemInfoSet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void Insertion()
@@ -190,4 +190,13 @@ public class ItemInfoSet : MonoBehaviour
     {
         return iD;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            itemBag.SetItemID(iD);//プレイヤーに触れたらitemBagにIDを渡す
+        }
+    }
 }
+

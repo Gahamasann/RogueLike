@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     //体力情報を維持する
     public int playerHp = 100;//プレイヤーの体力
     public int moneydebt = -2000000;//借金
+
+    //取得アイテムの情報を維持する
+    public List<int> getItemId = new List<int>();
     //HideInInspector:public変数だがInspectorで編集できない
     //プレイヤーの順番か判定用
     [HideInInspector] public bool playersTurn = true;

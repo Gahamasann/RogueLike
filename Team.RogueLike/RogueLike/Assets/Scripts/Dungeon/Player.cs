@@ -14,14 +14,14 @@ public class Player : MovingObject
     public Text moneyText;
     public Text hpText;
 
+
     private int money;
     private int hp; //プレイヤーの体力
+
 
     //MovingObjectのStartメソッドを継承　baseで呼び出し
     protected override void Start()
     {
-
-
         //シングルトンであるGameManagerのplayerHpを使うことに
         //よって、レベルを跨いでも値を保持しておける
         hp = GameManager.instance.playerHp;
