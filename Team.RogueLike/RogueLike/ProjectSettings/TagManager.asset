@@ -7,6 +7,8 @@ TagManager:
   - Exit
   - Item
   - Enemy
+  - Wall
+  - ItemBag
   layers:
   - Default
   - TransparentFX

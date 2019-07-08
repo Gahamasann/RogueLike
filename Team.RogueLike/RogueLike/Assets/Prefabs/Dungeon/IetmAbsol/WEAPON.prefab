@@ -120,6 +120,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   category: 0
+  iD: 0
+  itemName: 
+  rare: 0
+  attack: 0
+  defence: 0
+  heal: 0
+  buy: 0
+  rate: 0
+  sale: 0
+  text: 
   floor_RARE1: 0
   floor_RARE2: 0
   floor_RARE3: 0

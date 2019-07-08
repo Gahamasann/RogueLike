@@ -1585,7 +1585,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380511995}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1494454678
+=======
+--- !u!1 &1496401833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496401835}
+  - component: {fileID: 1496401834}
+  m_Layer: 0
+  m_Name: ItemBag
+  m_TagString: ItemBag
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1496401834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496401833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be1cb804b98aec4f8f0ff53b61f7bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getItemId: 
+--- !u!4 &1496401835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496401833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1500699306
+>>>>>>> e7da0a9834651fa230eedd855fe520369ef696c0
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2487,6 +2535,7 @@ PrefabInstance:
       objectReference: {fileID: 1099031538}
     - target: {fileID: 6298203931723658881, guid: 36a45d56d24b0c748a8dc063223400b4,
         type: 3}
+<<<<<<< HEAD
       propertyPath: moveTime
       value: 0.1
       objectReference: {fileID: 0}
@@ -2495,5 +2544,20 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 2074946890}
+=======
+      propertyPath: ItemBag
+      value: 
+      objectReference: {fileID: 1496401833}
+    - target: {fileID: 6298203931723658881, guid: 36a45d56d24b0c748a8dc063223400b4,
+        type: 3}
+      propertyPath: itemBag
+      value: 
+      objectReference: {fileID: 1496401834}
+    - target: {fileID: 3751512895754531948, guid: 36a45d56d24b0c748a8dc063223400b4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> e7da0a9834651fa230eedd855fe520369ef696c0
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36a45d56d24b0c748a8dc063223400b4, type: 3}

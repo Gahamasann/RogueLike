@@ -10,43 +10,44 @@ public class ItemInfoSet : MonoBehaviour
     private int rowLength;//行数
     private int colnumLength;//列数
 
-    SpriteRenderer image;
 
     [SerializeField]
     Category category;
 
-    private int iD;
-    private string itemName;
-    private int rare;
-    private int attack;
-    private int defence;
-    private int heal;
-    private int buy;
-    private float rate;
-    private int sale;
-    private string text;
+    public int iD;
+    public string itemName;
+    public int rare;
+    public int attack;
+    public int defence;
+    public int heal;
+    public int buy;
+    public float rate;
+    public int sale;
+    public string text;
 
     public int floor_RARE1;
     public int floor_RARE2;
     public int floor_RARE3;
     public int floor_RARE4;
 
+    private ItemBag itemBag;
+    public GameObject bag;
 
-    private enum Category
+    public enum Category
     {
         WEAPON,
         AROMOUR,
         FOOD,
         GOODS,
         TREASURE,
+        ID_search,//IDから情報を取得するとき用
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
-
-        //image = gameObject.GetComponent<SpriteRenderer>();
+        bag = GameObject.FindGameObjectWithTag("ItemBag");//ItemBagオブジェクトの検索
+        itemBag = bag.GetComponent<ItemBag>();//ItemBagオブジェクトの持ってるItemBagスクリプトを取得
 
         TextAsset textAsset = new TextAsset();//テキストファイルのデータを取得
 
@@ -77,7 +78,7 @@ public class ItemInfoSet : MonoBehaviour
         switch (category.ToString())
         {
             case "WEAPON":
-                iD = Random.Range(101, 105 + 1);
+                iD = Random.Range(101, 105 + 1);//アイテム数に合わせて変更が必要
                 break;
 
             case "AROMOUR":
@@ -106,7 +107,6 @@ public class ItemInfoSet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void Insertion()
@@ -127,4 +127,76 @@ public class ItemInfoSet : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// attackに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetAttack()
+    {
+        return attack;
+    }
+
+    /// <summary>
+    /// defenceに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetDefence()
+    {
+        return defence;
+    }
+
+    /// <summary>
+    /// healに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetHeal()
+    {
+        return heal;
+    }
+
+    /// <summary>
+    /// buyに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetBuy()
+    {
+        return buy;
+    }
+
+    /// <summary>
+    /// saleに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetSale()
+    {
+        return sale;
+    }
+
+    /// <summary>
+    /// textに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public string GetText()
+    {
+        return text;
+    }
+
+    /// <summary>
+    /// iDに入ってる値を返す
+    /// </summary>
+    /// <returns></returns>
+    public int GetID()
+    {
+        return iD;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            itemBag.SetItemID(iD);//プレイヤーに触れたらitemBagにIDを渡す
+        }
+    }
 }
+

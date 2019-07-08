@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\Layer2D.cs" />
     <Compile Include="Assets\Scripts\Dungeon\Enemy.cs" />
     <Compile Include="Assets\Scripts\Dungeon\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\ItemBag.cs" />
     <Compile Include="Assets\Scripts\Dungeon\ItemIDManager.cs" />
     <Compile Include="Assets\Scripts\Dungeon\ItemInfoSet.cs" />
     <Compile Include="Assets\Scripts\Dungeon\Loader.cs" />
