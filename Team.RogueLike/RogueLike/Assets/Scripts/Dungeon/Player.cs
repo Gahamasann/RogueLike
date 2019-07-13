@@ -18,6 +18,8 @@ public class Player : MovingObject
 
     private int money;
     private int hp; //プレイヤーの体力
+    private int hpMax;//プレイヤーの体力上限
+    private int steps;//歩行カウント用変数
     private GameObject rogWindow;
     private GameObject rog;
     private Text rogText;//ダメージ・アイテム拾得表記用テキスト
@@ -29,6 +31,8 @@ public class Player : MovingObject
         //シングルトンであるGameManagerのplayerHpを使うことに
         //よって、レベルを跨いでも値を保持しておける
         hp = GameManager.instance.playerHp;
+        hpMax = hp;
+        steps = 0;
         hpText.text = "HP:" + hp;
         money = GameManager.instance.moneydebt;
         moneyText.text = "Money:" + money;
@@ -63,6 +67,19 @@ public class Player : MovingObject
 
         horizontal = (int)Input.GetAxisRaw("Horizontal");
         vertical = (int)Input.GetAxisRaw("Vertical");
+        //歩行数5以上で体力上限減少
+        if(steps > 4)
+        {
+            //体力上限減少
+            hpMax -= 1;
+            //体力が上限より大きいなら体力を上限までさげる
+            if(hp > hpMax)
+            {
+                hp = hpMax;
+                hpText.text = "HP:" + hp;
+            }
+            steps = 0;
+        }
         //上下もしくは左右に移動を制限
         if (horizontal != 0)
         {
@@ -71,6 +88,8 @@ public class Player : MovingObject
         //上下左右どれかに移動する時
         if (horizontal != 0 || vertical != 0)
         {
+            //歩行数+1
+            steps += 1;
             //Playerの場合はWall以外判定する必要はない
             AttemptMove<Enemy>(horizontal, vertical);
         }
