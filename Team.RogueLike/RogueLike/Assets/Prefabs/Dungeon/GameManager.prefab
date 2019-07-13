@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4019128745264977467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4019128745264977478}
+  - component: {fileID: 4019128745264977465}
+  - component: {fileID: 3070994915346596340}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4019128745264977478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019128745264977467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4019128745264977465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019128745264977467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42b5e254642e44a49b3217ed4140a325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorStartDelay: 2
+  turnDelay: 0.05
+  playerHp: 10000
+  moneydebt: -2000000
+  getItemId: 
+  playersTurn: 1
+--- !u!114 &3070994915346596340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019128745264977467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8896de9bf46c140967effa88021299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WIDTH: 50
+  HEIGHT: 50
+  OUTER_MERGIN: 3
+  POS_MERGIN: 2
+  MIN_ROOM: 10
+  MAX_ROOM: 30
+  itemCount:
+    minimum: 1
+    maximum: 5
+  enemyCount:
+    minimum: 1
+    maximum: 5
+  exit: {fileID: 1783639399451878687, guid: 7aa0975ecd9d13345b1f08dc29a03261, type: 3}
+  floorTiles:
+  - {fileID: 1783639399451878687, guid: 5daa69ac074473f42aed2f5085af3511, type: 3}
+  outerWallTiles:
+  - {fileID: 1783639399451878687, guid: f7766eaab50d290489fb25c06f4ea255, type: 3}
+  itemTiles:
+  - {fileID: 3444192717295467372, guid: bf2d9cce3cc9b8444b867f806311bacc, type: 3}
+  - {fileID: 305608235381523962, guid: d474cb724bdfbee4b927bf35461f03da, type: 3}
+  - {fileID: 2388217540269480305, guid: 589ed914b9c233143b84ab3f9c688161, type: 3}
+  - {fileID: 5197940447029192221, guid: 7ed9f2625432458458e621d9f720f3c3, type: 3}
+  - {fileID: 1278396749939076349, guid: 9fa775744067d304091835b04df68983, type: 3}
+  enemyTiles:
+  - {fileID: 1399129927765147236, guid: 582b886d90fcd0f4098cba6343a7f2b5, type: 3}
