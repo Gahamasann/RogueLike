@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorStartDelay: 2
   turnDelay: 0.05
-  playerHp: 10000
+  playerHp: 20
   moneydebt: -2000000
   getItemId: 
   playersTurn: 1

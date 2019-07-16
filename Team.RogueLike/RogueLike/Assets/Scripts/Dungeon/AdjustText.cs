@@ -8,6 +8,8 @@ public class AdjustText : MonoBehaviour
     private Text log;
     private string preLog;//調整前のログ保存用
     float cnt = 0;
+    GameObject player;
+    Player pl;
 
     [SerializeField, Tooltip("新しいログがUI範囲内に収まるようにテキストを調整する(Truncate限定)")]
     private bool viewInRect = true;
@@ -15,8 +17,9 @@ public class AdjustText : MonoBehaviour
     private void Awake()
     {
         log = this.GetComponent<Text>();
-
         cnt = 3.0f;
+        player = GameObject.Find("Player");
+        pl = player.GetComponent<Player>();
     }
 
     private void Update()
@@ -34,6 +37,11 @@ public class AdjustText : MonoBehaviour
         if (cnt <= 0)
         {
             //テキスト内容が変わらない状態が続くと親を非活性化
+            transform.parent.gameObject.SetActive(false);
+        }
+
+        if(pl.GetHp() <1)
+        {
             transform.parent.gameObject.SetActive(false);
         }
 

@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305608235381523962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 383.9182, y: 242.91331, z: -2.3755455}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,7 +120,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   category: 2
+  iD: 0
+  itemName: 
+  rare: 0
+  attack: 0
+  defence: 0
+  heal: 0
+  buy: 0
+  rate: 0
+  sale: 0
+  text: 
   floor_RARE1: 0
   floor_RARE2: 0
   floor_RARE3: 0
   floor_RARE4: 0
+  bag: {fileID: 0}

@@ -20,6 +20,7 @@ public class Player : MovingObject
     private int hp; //プレイヤーの体力
     private int hpMax;//プレイヤーの体力上限
     private int steps;//歩行カウント用変数
+    private int age;//年齢
     private GameObject rogWindow;
     private GameObject rog;
     private Text rogText;//ダメージ・アイテム拾得表記用テキスト
@@ -33,7 +34,7 @@ public class Player : MovingObject
         hp = GameManager.instance.playerHp;
         hpMax = hp;
         steps = 0;
-        hpText.text = "HP:" + hp;
+        age = 20;
         money = GameManager.instance.moneydebt;
         moneyText.text = "Money:" + money;
 
@@ -72,11 +73,11 @@ public class Player : MovingObject
         {
             //体力上限減少
             hpMax -= 1;
+            age += 1;
             //体力が上限より大きいなら体力を上限までさげる
             if(hp > hpMax)
             {
                 hp = hpMax;
-                hpText.text = "HP:" + hp;
             }
             steps = 0;
         }
@@ -147,7 +148,6 @@ public class Player : MovingObject
     public void LoseHp(int loss)
     {
         hp -= loss;
-        hpText.text = "HP:" + hp;
         CheckIfGameOver();
     }
 
@@ -159,5 +159,20 @@ public class Player : MovingObject
             //public staticな変数なのでこのような簡単な形でメソッドを呼び出せる
             GameManager.instance.GameOver();
         }
+    }
+
+    public int GetHp()
+    {
+        return hp;
+    }
+
+    public int GetHpMax()
+    {
+        return hpMax;
+    }
+
+    public int GetAge()
+    {
+        return age;
     }
 }
