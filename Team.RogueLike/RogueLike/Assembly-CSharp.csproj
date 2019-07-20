@@ -55,10 +55,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Dungeon\AdjustText.cs" />
      <Compile Include="Assets\Scripts\Dungeon\AgeTex.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\Direction.cs" />
      <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\DgDivision.cs" />
      <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\DgGenerator.cs" />
      <Compile Include="Assets\Scripts\Dungeon\DungeonMaker\Layer2D.cs" />
      <Compile Include="Assets\Scripts\Dungeon\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Dungeon\Follow.cs" />
      <Compile Include="Assets\Scripts\Dungeon\GameManager.cs" />
      <Compile Include="Assets\Scripts\Dungeon\HpTex.cs" />
      <Compile Include="Assets\Scripts\Dungeon\ItemBag.cs" />

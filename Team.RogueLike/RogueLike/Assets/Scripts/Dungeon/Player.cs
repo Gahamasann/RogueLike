@@ -24,7 +24,12 @@ public class Player : MovingObject
     private GameObject rogWindow;
     private GameObject rog;
     private Text rogText;//ダメージ・アイテム拾得表記用テキスト
+    private Vector3 latestPos;
 
+    private BoxCollider2D boxCollider;
+    int horizontal = 0;
+    int vertical = 0;
+    int dirX, dirY;
 
     //MovingObjectのStartメソッドを継承　baseで呼び出し
     protected override void Start()
@@ -43,6 +48,8 @@ public class Player : MovingObject
         rogWindow = GameObject.Find("RogWindow");
         rog = GameObject.Find("RogText");
         rogText = rog.GetComponent<Text>();
+
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     //Playerスクリプトが無効になる前に、体力をGameManagerへ保存
@@ -63,11 +70,25 @@ public class Player : MovingObject
         if (cursor.activeSelf)
             return;
 
-        int horizontal = 0; //-1: 左移動, 1: 右移動
-        int vertical = 0; //-1: 下移動, 1: 上移動
+        //以前の入力された方向を取得、移動キー入力がないなら方向は変わらない
+        if(horizontal!=0||vertical!=0)
+        {
+            dirY = vertical;
+            dirX = horizontal;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            RaycastHit2D hit;
+            Attack(dirX, dirY, out hit);
+        }
+
+        horizontal = 0; //-1: 左移動, 1: 右移動
+        vertical = 0; //-1: 下移動, 1: 上移動
 
         horizontal = (int)Input.GetAxisRaw("Horizontal");
         vertical = (int)Input.GetAxisRaw("Vertical");
+
         //歩行数5以上で体力上限減少
         if(steps > 4)
         {
@@ -81,11 +102,25 @@ public class Player : MovingObject
             }
             steps = 0;
         }
-        //上下もしくは左右に移動を制限
-        if (horizontal != 0)
+        
+        if(!Input.GetKey(KeyCode.Space))
         {
-            vertical = 0;
+            //上下もしくは左右に移動を制限
+            if (horizontal != 0)
+            {
+                vertical = 0;
+            }
         }
+        else
+        {
+            //スペースキーを押している間斜め移動可能(縦横移動不可)
+            if(horizontal== 0||vertical == 0)
+            {
+                horizontal = 0;
+                vertical = 0;
+            }
+        }
+
         //上下左右どれかに移動する時
         if (horizontal != 0 || vertical != 0)
         {
@@ -107,6 +142,7 @@ public class Player : MovingObject
         //プレイヤーの順番終了
         GameManager.instance.playersTurn = false;
     }
+
 
     //MovingObjectの抽象メソッドのため必ず必要
     protected override void OnCantMove<T>(T component)
@@ -174,5 +210,40 @@ public class Player : MovingObject
     public int GetAge()
     {
         return age;
+    }
+
+    private void Attack(int xDir, int yDir, out RaycastHit2D hit)
+    {
+        //現在地を取得
+        Vector2 start = transform.position;
+        //目的地を取得
+        Vector2 end = start + new Vector2(xDir, yDir);
+        //自身のColliderを無効にし、Linecastｄ自分自身を判定しないようにする
+        boxCollider.enabled = false;
+        //現在地と目的地との間にblockingLayerのついたオブジェクトが無いか判定
+        hit = Physics2D.Linecast(start, end);
+        //Colliderを有効に戻す
+        boxCollider.enabled = true;
+        if(hit.transform == null)
+        {
+            GameManager.instance.playersTurn = false;
+        }
+        else
+        {
+            if (hit.transform.tag == "Enemy")
+            {
+                hit.transform.GetComponent<Enemy>().DamageEnemy(10);
+                rogWindow.SetActive(true);
+                rog.SetActive(true);
+                rogText.text += hit.transform.name + "に" + "10" + "のダメージを与えた\n";
+                GameManager.instance.playersTurn = false;
+            }
+            else
+            {
+                GameManager.instance.playersTurn = false;
+            }
+        }
+        
+        
     }
 }
