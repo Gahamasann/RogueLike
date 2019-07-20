@@ -10,6 +10,10 @@ public class Enemy : MovingObject
     public int skipMove = 1;//敵が動くかどうかの判定
     private int movecount = 1;//敵が動くかどうかをカウントする
     public int enemyHp = 30;
+    private float dame;
+    Random rnd;
+    private float rndnum;
+
     private GameObject rogWindow;
     private GameObject rog;
     private Text rogText;//ダメージ表記用テキスト
@@ -70,16 +74,24 @@ public class Enemy : MovingObject
             player.GetComponent<Player>().LoseHp(attack);
             rogWindow.SetActive(true);
             rog.SetActive(true);
-            rogText.text += this.name + "が" + player.name + "に" + attack + "ダメージ\n";
+            rogText.text += this.name + "が" + player.name + "に" + (int)dame + "ダメージ\n";
         }
     }
 
     //エネミーがダメージを受けたときに呼び出されるメソッド
     public void DamageEnemy(int loss)
     {
-        enemyHp -= loss;
+        rndnum = Random.Range(100, 110);
 
-        if(enemyHp <= 0)
+        dame = (loss - (float)defence) * (rndnum / 100);
+        if (dame < 0)
+        {
+            dame = 1;
+        }
+        enemyHp -= (int)dame;
+
+
+        if (enemyHp <= 0)
         {
             gameObject.SetActive(false);
         }

@@ -25,6 +25,12 @@ public class Player : MovingObject
     private GameObject rog;
     private Text rogText;//ダメージ・アイテム拾得表記用テキスト
     private Vector3 latestPos;
+    private GameObject damage;
+    Random rnd;
+    private float dame;
+    private float rndnum;
+    private Text damagetext;
+
 
     private BoxCollider2D boxCollider;
     int horizontal = 0;
@@ -151,7 +157,7 @@ public class Player : MovingObject
         hitenemy.DamageEnemy(attack);
         rogWindow.SetActive(true);
         rog.SetActive(true);
-        rogText.text += hitenemy.name + "に"+attack+"のダメージを与えた\n";
+        rogText.text += hitenemy.name + "に" + (int)dame + "のダメージを与えた\n";
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -183,7 +189,16 @@ public class Player : MovingObject
     //敵キャラがプレイヤーを攻撃した時のメソッド
     public void LoseHp(int loss)
     {
-        hp -= loss;
+
+        rndnum = Random.Range(100, 110);
+
+        dame = (loss - (float)defence) * (rndnum / 100);
+        if (dame < 0)
+        {
+            dame = 1;
+        }
+        hp -= (int)dame;
+        hpText.text = "HP:" + hp;
         CheckIfGameOver();
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class MovingObject : MonoBehaviour
 {
     public int attack = 10;
+    public int defence = 2;
     public float moveTime = 0.1f;
     public LayerMask blockingLayer;
 
